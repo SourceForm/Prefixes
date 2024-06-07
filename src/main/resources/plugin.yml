@@ -5,3 +5,14 @@ api-version: '1.20'
 authors: [SourceForm]
 description: Plugin to add prefixes to players on a minecraft server
 website: https://github.com/SourceForm
+
+commands:
+  setprefix:
+    description: Set a prefix for a player
+    usage: /setprefix <player> <prefix>
+    permission: prefixes.setprefix
+
+permissions:
+  prefixes.setprefix:
+    description: Allows the user to assign prefixes to players
+    default: op

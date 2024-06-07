@@ -6,7 +6,7 @@
 
   <groupId>me.sourceform</groupId>
   <artifactId>Prefixes</artifactId>
-  <version>0.1-SNAPSHOT-1</version>
+  <version>0.1-SNAPSHOT-4</version>
   <packaging>jar</packaging>
 
   <name>Prefixes</name>
