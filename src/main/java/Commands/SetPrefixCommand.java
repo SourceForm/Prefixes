@@ -51,7 +51,7 @@ public class SetPrefixCommand implements CommandExecutor {
             team = scoreboard.registerNewTeam(player.getName());
         }
 
-        team.setPrefix(prefix + "&f");
+        team.setPrefix(prefix);
         team.addEntry(player.getName());
     }
 }
