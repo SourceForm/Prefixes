@@ -34,7 +34,7 @@ public class SetPrefixCommand implements CommandExecutor {
 
         String prefix = ChatColor.translateAlternateColorCodes('&', args[1]);
         FileConfiguration config = plugin.getConfig();
-        config.set("prefixes." + player.getUniqueId().toString(), prefix);
+        config.set("prefixes." + player.getUniqueId(), prefix);
         plugin.saveConfig();
 
         setPlayerPrefix(player, prefix);
@@ -51,7 +51,7 @@ public class SetPrefixCommand implements CommandExecutor {
             team = scoreboard.registerNewTeam(player.getName());
         }
 
-        team.setPrefix(prefix);
+        team.setPrefix(prefix + "&f");
         team.addEntry(player.getName());
     }
 }
