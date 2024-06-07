@@ -1,5 +1,5 @@
 name: Prefixes
-version: '${project.version}'
+version: '1.0.1'
 main: me.sourceform.prefixes.CustomPrefixPlugin
 api-version: '1.20'
 authors: [SourceForm]
