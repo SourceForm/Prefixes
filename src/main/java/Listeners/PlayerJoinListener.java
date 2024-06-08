@@ -26,11 +26,6 @@ public class PlayerJoinListener implements Listener {
         String uuid = player.getUniqueId().toString();
         String prefix = config.getString("prefixes." + uuid, "");
         int deaths = config.getInt("players." + uuid + ".deaths", 0);
-
-        plugin.getLogger().info("Player UUID: " + uuid);
-        plugin.getLogger().info("Prefix: " + prefix);
-        plugin.getLogger().info("Deaths: " + deaths);
-
         setPlayerPrefixAndTabName(player, prefix, deaths);
     }
 
@@ -38,17 +33,16 @@ public class PlayerJoinListener implements Listener {
         ScoreboardManager manager = plugin.getServer().getScoreboardManager();
         Scoreboard scoreboard = manager.getMainScoreboard();
         Team team = scoreboard.getTeam(player.getName());
-
+        //Reset tab menu name
         if (team != null) {
             team.unregister();
         }
-
+        //Re-set prefix
         team = scoreboard.registerNewTeam(player.getName());
         team.setPrefix(ChatColor.translateAlternateColorCodes('&', prefix) + ChatColor.RESET + " ");
         team.addEntry(player.getName());
-
+        //Update tab menu name
         String tabName = ChatColor.translateAlternateColorCodes('&', prefix)+ ChatColor.WHITE + " " + player.getName() + ChatColor.RESET + " | Deaths: " + deaths;
-        plugin.getLogger().info("Setting tab name: " + tabName);
         player.setPlayerListName(tabName);
     }
 }

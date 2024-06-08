@@ -26,11 +26,4 @@ public class CustomPrefixPlugin extends JavaPlugin {
         // Save config on disable to ensure any changes are saved
         saveConfig();
     }
-
-    public void updatePlayerPrefix(Player player) {
-        String prefix = getConfig().getString("prefixes." + player.getUniqueId(), "");
-        player.setDisplayName(prefix + player.getName());
-        player.setPlayerListName(prefix + player.getName());
-    }
-
 }

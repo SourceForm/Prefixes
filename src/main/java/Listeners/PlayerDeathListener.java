@@ -42,17 +42,17 @@ public class PlayerDeathListener implements Listener {
         ScoreboardManager manager = plugin.getServer().getScoreboardManager();
         Scoreboard scoreboard = manager.getMainScoreboard();
         Team team = scoreboard.getTeam(player.getName());
-
+        // Reset prefix
         if (team != null) {
             team.unregister();
         }
-
+        // re-register prefix
         team = scoreboard.registerNewTeam(player.getName());
         team.setPrefix(ChatColor.translateAlternateColorCodes('&', prefix) + ChatColor.RESET + " ");
         team.addEntry(player.getName());
 
+        //Reset tab name
         String tabName = ChatColor.translateAlternateColorCodes('&', prefix)+ ChatColor.WHITE + " " + player.getName() + ChatColor.RESET + " | Deaths: " + deaths;
-        plugin.getLogger().info("Setting tab name: " + tabName);
         player.setPlayerListName(tabName);
     }
 }
