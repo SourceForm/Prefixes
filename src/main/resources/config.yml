@@ -1,0 +1,4 @@
+players:
+  <player-uuid>:
+    prefix: '<prefix>'
+    deaths: <number-of-deaths>
