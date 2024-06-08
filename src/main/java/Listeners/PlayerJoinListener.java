@@ -24,29 +24,31 @@ public class PlayerJoinListener implements Listener {
         Player player = e.getPlayer();
         FileConfiguration config = plugin.getConfig();
         String uuid = player.getUniqueId().toString();
-        String prefix = config.getString("players." + uuid + ".prefix", "");
+        String prefix = config.getString("prefixes." + uuid, "");
         int deaths = config.getInt("players." + uuid + ".deaths", 0);
 
-        setPlayerPrefixAndTabName(prefix, player, deaths);
+        plugin.getLogger().info("Player UUID: " + uuid);
+        plugin.getLogger().info("Prefix: " + prefix);
+        plugin.getLogger().info("Deaths: " + deaths);
+
+        setPlayerPrefixAndTabName(player, prefix, deaths);
     }
 
-    private void setPlayerPrefixAndTabName(String prefix, Player player, int deaths) {
+    private void setPlayerPrefixAndTabName(Player player, String prefix, int deaths) {
         ScoreboardManager manager = plugin.getServer().getScoreboardManager();
         Scoreboard scoreboard = manager.getMainScoreboard();
         Team team = scoreboard.getTeam(player.getName());
 
-        if(team != null) {
+        if (team != null) {
             team.unregister();
         }
 
         team = scoreboard.registerNewTeam(player.getName());
-        team.setPrefix(prefix + ChatColor.RESET);
+        team.setPrefix(ChatColor.translateAlternateColorCodes('&', prefix) + ChatColor.RESET + " ");
         team.addEntry(player.getName());
 
-        // Update tab menu name to include prefix and deaths
-        String tabName = prefix + " " +  ChatColor.RESET + player.getName() + " | Deaths: " + deaths;
-        plugin.getLogger().info("Setting tab name: " +tabName);
+        String tabName = ChatColor.translateAlternateColorCodes('&', prefix)+ ChatColor.WHITE + " " + player.getName() + ChatColor.RESET + " | Deaths: " + deaths;
+        plugin.getLogger().info("Setting tab name: " + tabName);
         player.setPlayerListName(tabName);
-
     }
 }

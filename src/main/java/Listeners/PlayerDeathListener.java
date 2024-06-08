@@ -2,11 +2,11 @@ package Listeners;
 
 import me.sourceform.prefixes.CustomPrefixPlugin;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.entity.Player;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
@@ -25,33 +25,34 @@ public class PlayerDeathListener implements Listener {
         FileConfiguration config = plugin.getConfig();
         String uuid = player.getUniqueId().toString();
 
-        //Increment death count
+        // Increment death count
         int deaths = config.getInt("players." + uuid + ".deaths", 0);
         deaths++;
         config.set("players." + uuid + ".deaths", deaths);
         plugin.saveConfig();
 
-        //Check prefix
-        String prefix = config.getString("players." + uuid + ".prefix", "");
+        // Retrieve prefix
+        String prefix = config.getString("prefixes." + uuid, "");
 
-        // update tab list name
+        // Update tab list name
         setPlayerPrefixAndTabName(player, prefix, deaths);
     }
-    private void setPlayerPrefixAndTabName(Player player, String prefix, int deaths){
+
+    private void setPlayerPrefixAndTabName(Player player, String prefix, int deaths) {
         ScoreboardManager manager = plugin.getServer().getScoreboardManager();
         Scoreboard scoreboard = manager.getMainScoreboard();
         Team team = scoreboard.getTeam(player.getName());
 
-        if(team != null){
+        if (team != null) {
             team.unregister();
         }
 
         team = scoreboard.registerNewTeam(player.getName());
-        team.setPrefix(prefix + ChatColor.WHITE + " ");
+        team.setPrefix(ChatColor.translateAlternateColorCodes('&', prefix) + ChatColor.RESET + " ");
         team.addEntry(player.getName());
 
-        String tabName = prefix + ChatColor.WHITE + player.getName() + ChatColor.RESET + " | Deaths: " + deaths;
+        String tabName = ChatColor.translateAlternateColorCodes('&', prefix)+ ChatColor.WHITE + " " + player.getName() + ChatColor.RESET + " | Deaths: " + deaths;
+        plugin.getLogger().info("Setting tab name: " + tabName);
         player.setPlayerListName(tabName);
     }
-
 }
