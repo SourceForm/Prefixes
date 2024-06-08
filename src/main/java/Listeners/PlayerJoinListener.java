@@ -1,6 +1,5 @@
 package Listeners;
 
-
 import me.sourceform.prefixes.CustomPrefixPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -24,11 +23,14 @@ public class PlayerJoinListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         FileConfiguration config = plugin.getConfig();
-        String prefix = config.getString("prefixes." + player.getUniqueId().toString(), "");
-        setPlayerPrefix(player, prefix);
+        String uuid = player.getUniqueId().toString();
+        String prefix = config.getString("players." + uuid + ".prefix", "");
+        int deaths = config.getInt("players." + uuid + ".deaths", 0);
+
+        setPlayerPrefixAndTabName(player, prefix, deaths);
     }
 
-    private void setPlayerPrefix(Player player, String prefix) {
+    private void setPlayerPrefixAndTabName(Player player, String prefix, int deaths) {
         ScoreboardManager manager = plugin.getServer().getScoreboardManager();
         Scoreboard scoreboard = manager.getMainScoreboard();
         Team team = scoreboard.getTeam(player.getName());
@@ -39,5 +41,9 @@ public class PlayerJoinListener implements Listener {
 
         team.setPrefix(prefix + ChatColor.RESET);
         team.addEntry(player.getName());
+
+        // Update tab menu name to include prefix and deaths
+        String tabName = prefix + player.getName() + ChatColor.RESET + " | Deaths: " + deaths;
+        player.setPlayerListName(tabName);
     }
 }
