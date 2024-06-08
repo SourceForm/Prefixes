@@ -27,23 +27,26 @@ public class PlayerJoinListener implements Listener {
         String prefix = config.getString("players." + uuid + ".prefix", "");
         int deaths = config.getInt("players." + uuid + ".deaths", 0);
 
-        setPlayerPrefixAndTabName(player, prefix, deaths);
+        setPlayerPrefixAndTabName(prefix, player, deaths);
     }
 
-    private void setPlayerPrefixAndTabName(Player player, String prefix, int deaths) {
+    private void setPlayerPrefixAndTabName(String prefix, Player player, int deaths) {
         ScoreboardManager manager = plugin.getServer().getScoreboardManager();
         Scoreboard scoreboard = manager.getMainScoreboard();
         Team team = scoreboard.getTeam(player.getName());
 
-        if (team == null) {
-            team = scoreboard.registerNewTeam(player.getName());
+        if(team != null) {
+            team.unregister();
         }
 
+        team = scoreboard.registerNewTeam(player.getName());
         team.setPrefix(prefix + ChatColor.RESET);
         team.addEntry(player.getName());
 
         // Update tab menu name to include prefix and deaths
         String tabName = prefix + " " +  ChatColor.RESET + player.getName() + " | Deaths: " + deaths;
+        plugin.getLogger().info("Setting tab name: " +tabName);
         player.setPlayerListName(tabName);
+
     }
 }
