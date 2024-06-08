@@ -43,7 +43,7 @@ public class PlayerJoinListener implements Listener {
         team.addEntry(player.getName());
 
         // Update tab menu name to include prefix and deaths
-        String tabName = prefix + player.getName() + ChatColor.RESET + " | Deaths: " + deaths;
+        String tabName = prefix + " " +  ChatColor.RESET + player.getName() + " | Deaths: " + deaths;
         player.setPlayerListName(tabName);
     }
 }
