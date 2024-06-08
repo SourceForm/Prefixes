@@ -1,27 +1,19 @@
-# CustomPrefix Plugin
+### Custom Prefix Plugin
+The Custom Prefix Plugin is a Spigot plugin for Minecraft servers that allows server administrators to set custom prefixes for players, which are displayed in the tab menu. Additionally, the plugin tracks and displays the number of deaths for each player in the tab menu.
 
-CustomPrefix is a Minecraft plugin that allows server administrators to assign custom prefixes to players. These prefixes are displayed in chat, the tab list (as long as no other plugins overwrite the tab list), and above the player's head.
+###Features
+*Custom Prefixes: Set custom prefixes for players.
+*Tab Menu Integration: Display custom prefixes and player death counts in the tab menu.
+*Death Count Tracking: Automatically track the number of deaths for each player.
 
-## Features
+###Installation
+*Download the latest version of the plugin from the releases page.
+*Place the downloaded .jar file into your server's plugins folder.
+*Restart or reload your server.
 
-- Set custom prefixes for players.
-- Prefixes are stored in a configuration file.
-- Prefixes appear in chat, the tab list, and above players' heads.
+###Usage
+#Setting Prefixes
+To set a custom prefix for a player, use the command /setprefix <player name> <prefix>
 
-## Installation
-
-1. Download the latest release of the CustomPrefix plugin.
-2. Place the downloaded JAR file into your server's `plugins` directory.
-3. Start or restart your Minecraft server.
-
-## Commands
-
-### `/setprefix`
-
-- **Description**: Sets a custom prefix for a specified player.
-- **Usage**: `/setprefix <player> <prefix>`
-- **Permission**: `customprefix.setprefix`
-
-Example:
-```plaintext
-/setprefix Steve &4[Admin]
+###Viewing Prefixes and Death Counts
+*When players join the server, their custom prefix and death count will be displayed in the tab menu.
