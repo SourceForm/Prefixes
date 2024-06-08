@@ -7,6 +7,7 @@ CustomPrefix is a Minecraft plugin that allows server administrators to assign c
 - Set custom prefixes for players.
 - Prefixes are stored in a configuration file.
 - Prefixes appear in chat, the tab list, and above players' heads.
+- Track and display the number of deaths for each player.
 
 ## Installation
 
@@ -25,3 +26,15 @@ CustomPrefix is a Minecraft plugin that allows server administrators to assign c
 Example:
 ```plaintext
 /setprefix Steve &4[Admin]
+```
+
+## Configuration
+Prefixes and player death counts are stored in the config.yml file. You can modify these values directly in the file to customize prefixes or view and edit death counts for each player. Here's an example of the configuration format:
+```plaintext
+prefixes:
+  a32bade4-a0ae-4613-b628-da15d589a206: '&c&lGod'
+players:
+  a32bade4-a0ae-4613-b628-da15d589a206:
+    deaths: 3
+```
+Feel free to adjust the prefixes and death counts as needed to suit your server's needs.
