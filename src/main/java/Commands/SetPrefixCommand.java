@@ -50,8 +50,10 @@ public class SetPrefixCommand implements CommandExecutor {
         if (team == null) {
             team = scoreboard.registerNewTeam(player.getName());
         }
-
         team.setPrefix(prefix);
         team.addEntry(player.getName());
+        String uuid = player.getUniqueId().toString();
+        int deaths = plugin.getConfig().getInt("players." + uuid + ".deaths", 0);
+        plugin.updateTab(player, prefix, deaths);
     }
 }

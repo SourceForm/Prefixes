@@ -6,7 +6,7 @@
 
   <groupId>me.sourceform</groupId>
   <artifactId>Prefixes</artifactId>
-  <version>2</version>
+  <version>3.0.1</version>
   <packaging>jar</packaging>
 
   <name>Prefixes</name>
@@ -66,7 +66,7 @@
       <dependency>
           <groupId>org.spigotmc</groupId>
           <artifactId>spigot-api</artifactId>
-          <version>1.20.6-R0.1-SNAPSHOT</version>
+          <version>1.21-R0.1-SNAPSHOT</version>
           <scope>provided</scope>
       </dependency>
   </dependencies>

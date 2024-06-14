@@ -4,6 +4,7 @@ import Commands.SetPrefixCommand;
 import Listeners.ChatListener;
 import Listeners.PlayerDeathListener;
 import Listeners.PlayerJoinListener;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,4 +27,11 @@ public class CustomPrefixPlugin extends JavaPlugin {
         // Save config on disable to ensure any changes are saved
         saveConfig();
     }
+
+    public void updateTab(Player player, String prefix, int deaths){
+        String tabName = ChatColor.translateAlternateColorCodes('&', prefix)+ ChatColor.WHITE + " " + player.getName() + ChatColor.RESET + " | Deaths: " + deaths;
+        player.setPlayerListName(tabName);
+
+    }
+
 }

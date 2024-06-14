@@ -1,7 +1,7 @@
 name: Prefixes
 version: '${project.version}'
 main: me.sourceform.prefixes.CustomPrefixPlugin
-api-version: '1.20'
+api-version: '1.21'
 authors: [SourceForm]
 description: Plugin to add prefixes to players on a minecraft server
 website: https://github.com/SourceForm

@@ -52,7 +52,6 @@ public class PlayerDeathListener implements Listener {
         team.addEntry(player.getName());
 
         //Reset tab name
-        String tabName = ChatColor.translateAlternateColorCodes('&', prefix)+ ChatColor.WHITE + " " + player.getName() + ChatColor.RESET + " | Deaths: " + deaths;
-        player.setPlayerListName(tabName);
+        plugin.updateTab(player, prefix, deaths);
     }
 }
