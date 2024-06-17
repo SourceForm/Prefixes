@@ -11,8 +11,9 @@ commands:
     description: Set a prefix for a player
     usage: /setprefix <player> <prefix>
     permission: prefixes.setprefix
+    permission-message: Get an administrator to perform this command.
 
 permissions:
   prefixes.setprefix:
     description: Allows the user to assign prefixes to players
-    default: op
+    default: true

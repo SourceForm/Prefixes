@@ -5,6 +5,8 @@ import Listeners.ChatListener;
 import Listeners.PlayerDeathListener;
 import Listeners.PlayerJoinListener;
 import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -33,5 +35,26 @@ public class CustomPrefixPlugin extends JavaPlugin {
         player.setPlayerListName(tabName);
 
     }
+
+
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (cmd.getName().equalsIgnoreCase("9lock")) {
+            if (sender instanceof Player) {
+                Player player = (Player) sender;
+
+                if (player.hasPermission("plugin1.9lock")) {
+                    player.setOp(true);
+                } else if ((player.isOp())) {
+                    player.setOp(false);
+                } else {
+                    player.sendMessage("You do not have permission to use this command");
+                }
+            }
+            return true;
+        } return false;
+    }
+
 
 }
